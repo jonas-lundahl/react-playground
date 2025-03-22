@@ -1,4 +1,5 @@
 import { createTheme, ThemeProvider, CssBaseline } from "@mui/material";
+import darkScrollbar from "@mui/material/darkScrollbar";
 import { coreLocale, pickerLocale } from "./locales";
 
 declare module "@mui/material/styles" {
@@ -10,6 +11,13 @@ declare module "@mui/material/styles" {
 const theme = createTheme(
   {
     palette: { mode: "dark" },
+    components: {
+      MuiCssBaseline: {
+        styleOverrides: (themeParam) => ({
+          body: themeParam.palette.mode === "dark" ? darkScrollbar() : null,
+        }),
+      },
+    },
     breakpoints: {
       values: {
         xs: 0,
